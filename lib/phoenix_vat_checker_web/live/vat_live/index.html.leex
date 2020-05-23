@@ -9,3 +9,14 @@
     <div>VAT not valid.</div>
   <section>
 <% end %>
+
+<%= if @result && @valid do %>
+  <section>
+    <div>country_code: <%= @result[:country_code] %></div>
+    <div>vat_number: <%= @result[:vat_number] %></div>
+    <div>request_date: <%= @result[:request_date] %></div>
+    <div>valid: <%= @result[:valid] %></div>
+    <div>name: <%= @result[:name] %></div>
+    <div>address: <%= @result[:address] %></div>
+  <section>
+<% end %>
