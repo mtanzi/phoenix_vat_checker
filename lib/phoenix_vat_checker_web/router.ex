@@ -17,7 +17,7 @@ defmodule PhoenixVatCheckerWeb.Router do
   scope "/", PhoenixVatCheckerWeb do
     pipe_through :browser
 
-    live "/", PageLive, :index
+    live "/", VatLive.Index, :index
   end
 
   # Other scopes may use custom stacks.
