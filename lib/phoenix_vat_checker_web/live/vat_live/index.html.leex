@@ -3,3 +3,9 @@
 <form phx-change="suggest" phx-submit="search">
   <input type="text" name="q" value="<%= @query %>" placeholder="Search..."/>
 </form>
+
+<%= if !@valid do %>
+  <section>
+    <div>VAT not valid.</div>
+  <section>
+<% end %>
