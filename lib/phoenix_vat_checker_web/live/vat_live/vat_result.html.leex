@@ -1,0 +1,16 @@
+<section class="vat-section">
+  <div class="compant-name"><%= @result.name %></div>
+  <div class="vat-company-address">
+    <div><%= @result.address %></div>
+  <div>
+
+  <div class="vat-data-container">
+    <div class="vat-icon">
+      <span class="flag-icon flag-icon-<%= String.downcase(@result.country_code)%>"></span>
+    </div>
+    <div class="vat-data"><%= @result.country_code %></div>
+    <div class="vat-data"><%= @result.vat_number %></div>
+  </div>
+
+  <div class="request-date">Request Date: <%= @result.request_date %></div>
+<section>
