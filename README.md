@@ -1,6 +1,6 @@
 # PhoenixVatChecker
 
-This application checks if the given VAT number is valid, if so it returns the information of the company.
+This application uses Phoenix Live View to checks if the VAT number passed is valid, if so it returns the information of the related company.
 
 ---
 
