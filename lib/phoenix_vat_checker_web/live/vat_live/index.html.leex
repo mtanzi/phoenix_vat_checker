@@ -1,31 +1,43 @@
-<div class="container">
-  <div class="header">
-    <div>VAT Validator</div>
-  </div>
+<div class="inner-container">
+  <section>
+    <div class="description">
+      <div>The VAT Validator uses the <a href="https://ec.europa.eu/taxation_customs/vies/vatResponse.html">VIAS</a> services provided by the European Commission to verify a VAT number and return the information of the respective company.</div>
+    </div>
+  </section>
 
   <div class="form-container">
-    <form phx-change="suggest" phx-submit="search">
+    <form phx-change="suggest" phx-submit="search" autocomplete="off">
       <div class="field-container">
-        <input type="text" name="q" value="<%= @query %>" placeholder="Search..."/ required>
-        <%= if @error do %>
-          <div class="validation">
-            <div><%= @error %></div>
-          <div>
-        <% end %>
+        <input <%= if @error, do: "class='input-error'" %> type="text" name="q" value="<%= @query %>" placeholder="Enter the VAT number…"/ required>
       </div>
     </form>
+    <div class="example">
+      <div>VAT example: (Google): IE6388047V</div>
+    </div>
+    <%= if @error do %>
+      <div class="validation">
+        <div><%= @error %></div>
+      <div>
+    <% end %>
   </div>
 
-  <div>VAT example (BBC): GB333289454</div>
-
   <%= if @result do %>
-    <section>
-      <div>country_code: <%= @result.country_code %></div>
-      <div>vat_number: <%= @result.vat_number %></div>
-      <div>request_date: <%= @result.request_date %></div>
-      <div>valid: <%= @result.valid %></div>
-      <div>name: <%= @result.name %></div>
-      <div>address: <%= @result.address %></div>
+    <section class="vat-section">
+      <div class="compant-name"><%= @result.name %></div>
+      <div class="vat-company-address">
+        <div><%= @result.address %></div>
+      <div>
+
+      <div class="vat-data-container">
+        <div class="vat-icon">
+          <span class="flag-icon flag-icon-<%= String.downcase(@result.country_code)%>"></span>
+        </div>
+        <div class="vat-data"><%= @result.country_code %></div>
+        <div class="vat-data"><%= @result.vat_number %></div>
+      </div>
+
+      <div class="request-date">Request Date: <%= @result.request_date %></div>
+      <!-- <div>valid: <%= @result.valid %></div> -->
     <section>
   <% end %>
 </div>

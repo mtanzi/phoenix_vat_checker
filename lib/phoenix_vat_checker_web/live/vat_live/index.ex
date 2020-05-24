@@ -14,7 +14,8 @@ defmodule PhoenixVatCheckerWeb.VatLive.Index do
         {:noreply, assign(socket, query: query, error: nil, loading: true)}
 
       false ->
-        {:noreply, assign(socket, query: query, error: @invlid_format_error, loading: true)}
+        {:noreply,
+         assign(socket, query: query, result: nil, error: @invlid_format_error, loading: true)}
     end
   end
 
