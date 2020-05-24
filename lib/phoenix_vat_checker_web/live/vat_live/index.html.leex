@@ -1,22 +1,31 @@
-<h1>VAT Validator</h1>
+<div class="container">
+  <div class="header">
+    <div>VAT Validator</div>
+  </div>
 
-<form phx-change="suggest" phx-submit="search">
-  <input type="text" name="q" value="<%= @query %>" placeholder="Search..."/>
-</form>
+  <div class="form-container">
+    <form phx-change="suggest" phx-submit="search">
+      <div class="field-container">
+        <input type="text" name="q" value="<%= @query %>" placeholder="Search..."/ required>
+        <%= if @error do %>
+          <div class="validation">
+            <div><%= @error %></div>
+          <div>
+        <% end %>
+      </div>
+    </form>
+  </div>
 
-<%= if !@valid do %>
-  <section>
-    <div>VAT not valid.</div>
-  <section>
-<% end %>
+  <div>VAT example (BBC): GB333289454</div>
 
-<%= if @result && @valid do %>
-  <section>
-    <div>country_code: <%= @result[:country_code] %></div>
-    <div>vat_number: <%= @result[:vat_number] %></div>
-    <div>request_date: <%= @result[:request_date] %></div>
-    <div>valid: <%= @result[:valid] %></div>
-    <div>name: <%= @result[:name] %></div>
-    <div>address: <%= @result[:address] %></div>
-  <section>
-<% end %>
+  <%= if @result do %>
+    <section>
+      <div>country_code: <%= @result.country_code %></div>
+      <div>vat_number: <%= @result.vat_number %></div>
+      <div>request_date: <%= @result.request_date %></div>
+      <div>valid: <%= @result.valid %></div>
+      <div>name: <%= @result.name %></div>
+      <div>address: <%= @result.address %></div>
+    <section>
+  <% end %>
+</div>

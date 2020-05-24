@@ -1,36 +1,47 @@
 defmodule PhoenixVatCheckerWeb.VatLive.Index do
   use PhoenixVatCheckerWeb, :live_view
 
-  alias ExVatcheck.VAT
+  @invlid_format_error "The format of the VAT is not valid"
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, query: nil, result: nil, valid: false, loading: false)}
+    {:ok, assign(socket, query: nil, result: nil, error: nil, loading: false)}
   end
 
-  def handle_event("suggest", %{"q" => query}, socket) when byte_size(query) <= 100 do
-    case ExVatcheck.Countries.valid_format?(query) do
+  def handle_event("suggest", %{"q" => query}, socket) do
+    case VAT.valid_format?(query) do
       true ->
-        {:noreply, assign(socket, query: query, valid: true, loading: true)}
+        {:noreply, assign(socket, query: query, error: nil, loading: true)}
 
       false ->
-        {:noreply, assign(socket, query: query, valid: false, loading: true)}
+        {:noreply, assign(socket, query: query, error: @invlid_format_error, loading: true)}
     end
   end
 
-  def handle_event("search", %{"q" => query}, socket) when byte_size(query) <= 100 do
-    send(self(), {:search, query})
-    {:noreply, assign(socket, query: query, result: nil, loading: true)}
+  def handle_event("search", %{"q" => query}, socket) do
+    case VAT.valid_format?(query) do
+      true ->
+        send(self(), {:search, query})
+        {:noreply, assign(socket, query: query, error: nil, loading: true)}
+
+      false ->
+        {:noreply,
+         assign(socket,
+           query: query,
+           result: nil,
+           error: @invlid_format_error,
+           loading: false
+         )}
+    end
   end
 
   def handle_info({:search, query}, socket) do
-    {:noreply, assign(socket, loading: false, result: fetch_vat(query), loading: false)}
-  end
+    case VAT.fetch(query) do
+      {:error, error} ->
+        {:noreply, assign(socket, query: query, result: nil, error: error, loading: false)}
 
-  defp fetch_vat(query) do
-    ExVatcheck.check(query)
-    |> handle_vat
+      {:ok, result} ->
+        {:noreply, assign(socket, query: query, result: result, error: nil, loading: false)}
+    end
   end
-
-  defp handle_vat(%ExVatcheck.VAT{vies_response: result}), do: result
 end
