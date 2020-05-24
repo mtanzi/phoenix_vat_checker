@@ -1,18 +1,15 @@
 # PhoenixVatChecker
 
-To start your Phoenix server:
+This application checks if the given VAT number is valid, if so it returns the information of the company.
 
-  * Setup the project with `mix setup`
+---
+
+To start PhoenixVatChecker server:
+
+  * Get the dependencies `mix deps.get`
   * Start Phoenix endpoint with `mix phx.server`
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
 
-## Learn more
-
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+![SPA](checker.png)
