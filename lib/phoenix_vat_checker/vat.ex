@@ -16,11 +16,11 @@ defmodule VAT do
   end
 
   def handle_vat(%ExVatcheck.VAT{exists: false}) do
-    {:error, 'Vat does not exist'}
+    {:error, 'VAT does not exist'}
   end
 
   def handle_vat(%ExVatcheck.VAT{valid: false}) do
-    {:error, 'Vat not valid'}
+    {:error, 'VAT not valid'}
   end
 
   def handle_vat(%ExVatcheck.VAT{
@@ -31,12 +31,12 @@ defmodule VAT do
       }) do
     {:ok,
      %__MODULE__{
-       address: "BC0 B1 D1 BROADCAST CENTRE\nWHITE CITY PLACE\n201 WOOD LANE\nLONDON\n\nW12 7TP",
-       country_code: "GB",
-       name: "BRITISH BROADCASTING CORPORATION",
-       request_date: "2020-05-24",
-       valid: true,
-       vat_number: "333289454"
+       address: vies_response.address,
+       country_code: vies_response.country_code,
+       name: vies_response.name,
+       request_date: vies_response.request_date,
+       valid: vies_response.valid,
+       vat_number: vies_response.vat_number
      }}
   end
 end
