@@ -1,7 +1,6 @@
 body {
   font-family: "Montserrat", sans-serif;
-  font-smoothing: antialiased;
-  /* background-color: #fac564; */
+  font-smoothing: antialiased
 }
 
 .inner-container {
@@ -30,6 +29,10 @@ body {
   display: inline;
 }
 
+.description {
+  text-align: justify;
+}
+
 .example {
     margin-top: 0.5em;
     padding-left: 0.2em;
@@ -50,7 +53,7 @@ body {
     display: block;
     max-width: 400px;
     color: #dcdcdc;
-    margin-top: 5em;
+    margin-top: 3em;
 }
 
 form {
@@ -85,8 +88,10 @@ input {
 }
 
 .validation {
-  margin-top: 1em;
   color: red;
+  height: 20px;
+  padding-left: 0.2em;
+  margin-bottom: 0.5em;
 }
 
 .footer {

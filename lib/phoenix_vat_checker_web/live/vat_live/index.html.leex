@@ -1,11 +1,17 @@
 <div class="inner-container">
   <section>
     <div class="description">
-      <div>The VAT Validator uses the <a href="https://ec.europa.eu/taxation_customs/vies/vatResponse.html">VIAS</a> services provided by the European Commission to verify a VAT number and return the information of the respective company.</div>
+      <div>The VAT Validator uses the <a href="https://ec.europa.eu/taxation_customs/vies/vatResponse.html">VIAS</a> services provided by the European Commission. The form laverage the power of Phoenix Live View and the <a href="https://github.com/taxjar/ex_vatcheck">ExVatcheck</a> hex package to validate in realtime whether the VAT data inserted is well formatted, if so after pressing enter it returns the information of the relative company.</div>
     </div>
   </section>
 
   <div class="form-container">
+
+    <div class="validation">
+      <%= if @error do %>
+        <div><%= @error %></div>
+      <% end %>
+    </div>
     <form phx-change="suggest" phx-submit="search" autocomplete="off">
       <div class="field-container">
         <input <%= if @error, do: "class='input-error'" %> type="text" name="q" value="<%= @query %>" placeholder="Enter the VAT number…"/ required>
@@ -14,11 +20,6 @@
     <div class="example">
       <div>VAT example: (Google): IE6388047V</div>
     </div>
-    <%= if @error do %>
-      <div class="validation">
-        <div><%= @error %></div>
-      <div>
-    <% end %>
   </div>
 
   <%= if @result do %>

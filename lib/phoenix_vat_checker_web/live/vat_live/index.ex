@@ -1,7 +1,7 @@
 defmodule PhoenixVatCheckerWeb.VatLive.Index do
   use PhoenixVatCheckerWeb, :live_view
 
-  @invlid_format_error "The format of the VAT is not valid"
+  @invlid_format_error "Format not valid"
 
   @impl true
   def mount(_params, _session, socket) do
