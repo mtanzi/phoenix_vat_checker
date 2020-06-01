@@ -16,10 +16,13 @@
       <div class="field-container">
         <input <%= if @error, do: "class='input-error'" %> type="text" name="q" value="<%= @query %>" placeholder="Enter the VAT number…"/ required>
       </div>
+      <div class="example">
+        <div>VAT example: (Google): IE6388047V</div>
+      </div>
+      <br/>
+      <button type="submit" <%= if @error || !@query, do: "disabled" %> >search</button>
     </form>
-    <div class="example">
-      <div>VAT example: (Google): IE6388047V</div>
-    </div>
+
   </div>
 
   <%= if @result do %>
