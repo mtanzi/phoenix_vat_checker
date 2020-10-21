@@ -44,7 +44,8 @@ defmodule PhoenixVatChecker.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:ex_vatcheck, "~> 0.1.5"}
+      {:ex_vatcheck, "~> 0.1.6",
+       git: "git@github.com:mtanzi/ex_vatcheck.git", branch: "upgrade-hackney"}
     ]
   end
 
